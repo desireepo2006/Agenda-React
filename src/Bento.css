@@ -1,0 +1,287 @@
+/* Paleta de colores y variables */
+:root {
+  --azul-base: #0a192f;
+  --azul-tarjeta: #112240;
+  --azul-borde: #233554;
+  --turquesa: #64ffda;
+  --turquesa-translucido: rgba(100, 255, 218, 0.1);
+  --dorado: #f5a623;
+  --dorado-translucido: rgba(245, 166, 35, 0.15);
+  --blanco: #e6f1ff;
+  --gris-texto: #8892b0;
+  --bento-radius: 16px;
+  --transicion-suave: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Animaciones de entrada y pulso */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulsoBorde {
+  0% { border-color: var(--azul-borde); }
+  50% { border-color: var(--turquesa); }
+  100% { border-color: var(--azul-borde); }
+}
+
+/* Contenedor Bento Grid Principal */
+.bento-contenedor {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--blanco);
+  background-color: var(--azul-base);
+  min-height: 100vh;
+}
+
+/* Tarjeta Bento Base */
+.bento-tarjeta {
+  background-color: var(--azul-tarjeta);
+  border: 1px solid var(--azul-borde);
+  border-radius: var(--bento-radius);
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: var(--transicion-suave);
+  animation: fadeInUp 0.6s ease forwards;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animación y efecto Hover en tarjetas */
+.bento-tarjeta:hover {
+  transform: translateY(-5px);
+  border-color: var(--turquesa);
+  box-shadow: 0 12px 30px rgba(100, 255, 218, 0.1);
+}
+
+/* Asignación de áreas en la cuadrícula */
+.bento-cabecera {
+  grid-column: span 12;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--turquesa);
+}
+
+.bento-cabecera h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  line-height: 1.3; /* <- Esto le da espacio a las letras para no cortarse */
+  padding-bottom: 5px;
+  background: linear-gradient(135deg, var(--blanco) 30%, var(--turquesa) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bento-stats {
+  grid-column: span 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-left: 4px solid var(--dorado);
+}
+
+.bento-stats .numero {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--dorado);
+  line-height: 1;
+}
+
+.bento-formulario-seccion {
+  grid-column: span 7; 
+  display: flex;
+  justify-content: center; 
+}
+.bento-lista-seccion {
+  grid-column: span 12; /* Antes era 8. Ahora ocupa todo el ancho de la página */
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+/* Scrollbar personalizada */
+.bento-lista-seccion::-webkit-scrollbar {
+  width: 6px;
+}
+.bento-lista-seccion::-webkit-scrollbar-track {
+  background: var(--azul-tarjeta);
+}
+.bento-lista-seccion::-webkit-scrollbar-thumb {
+  background: var(--azul-borde);
+  border-radius: 3px;
+}
+.bento-lista-seccion::-webkit-scrollbar-thumb:hover {
+  background: var(--turquesa);
+}
+
+/* Estilos de Formulario Bento */
+.bento-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 450px; /* Evita que los inputs sean gigantes */
+  margin: 0 auto; /* Lo mantiene perfectamente en el centro */
+}
+
+.bento-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bento-input-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--gris-texto);
+}
+
+.bento-input {
+  background-color: var(--azul-base);
+  border: 1px solid var(--azul-borde);
+  border-radius: 8px;
+  padding: 12px;
+  color: var(--blanco);
+  font-size: 1rem;
+  transition: var(--transicion-suave);
+}
+
+.bento-input:focus {
+  outline: none;
+  border-color: var(--turquesa);
+  box-shadow: 0 0 0 3px var(--turquesa-translucido);
+}
+
+.bento-btn {
+  background: linear-gradient(135deg, var(--turquesa) 0%, #00b4d8 100%);
+  color: var(--azul-base);
+  border: none;
+  border-radius: 8px;
+  padding: 14px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transicion-suave);
+  margin-top: 10px;
+}
+
+.bento-btn:hover:not(:disabled) {
+  transform: scale(1.02);
+  box-shadow: 0 5px 15px var(--turquesa-translucido);
+}
+
+.bento-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Estilos de Lista Bento */
+.bento-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* <- Magia responsive */
+  gap: 15px;
+}
+
+.bento-contacto-item {
+  background-color: var(--azul-base);
+  border: 1px solid var(--azul-borde);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: var(--transicion-suave);
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+.bento-contacto-item:hover {
+  border-color: var(--dorado);
+  background-color: var(--dorado-translucido);
+}
+
+.contacto-inicial {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: var(--turquesa-translucido);
+  border: 1px solid var(--turquesa);
+  color: var(--turquesa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.contacto-info {
+  flex-grow: 1;
+  margin-left: 15px;
+}
+
+.contacto-nombre {
+  display: block;
+  font-weight: 600;
+  color: var(--blanco);
+  font-size: 1.05rem;
+}
+
+.contacto-telefono {
+  display: block;
+  color: var(--gris-texto);
+  font-size: 0.9rem;
+  margin-top: 2px;
+}
+
+/* Feedback de Estados */
+.bento-status-msg {
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.bento-status-msg.exito {
+  background-color: rgba(40, 167, 69, 0.15);
+  color: #28a745;
+  border: 1px solid #28a745;
+}
+
+.bento-status-msg.error {
+  background-color: rgba(220, 53, 69, 0.15);
+  color: #dc3545;
+  border: 1px solid #dc3545;
+}
+
+/* Adaptabilidad a Móviles */
+@media (max-width: 900px) {
+  .bento-contenedor {
+    grid-template-columns: 1fr;
+    padding: 10px;
+    margin: 20px auto;
+  }
+  .bento-cabecera, .bento-stats, .bento-formulario-seccion, .bento-lista-seccion {
+    grid-column: span 1;
+  }
+  .bento-lista {
+    grid-template-columns: 1fr;
+  }
+}
