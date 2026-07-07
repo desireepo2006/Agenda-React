@@ -107,7 +107,7 @@
   justify-content: center; 
 }
 .bento-lista-seccion {
-  grid-column: span 12; /* Antes era 8. Ahora ocupa todo el ancho de la página */
+  grid-column: span 12; 
   max-height: 500px;
   overflow-y: auto;
 }
@@ -133,8 +133,8 @@
   flex-direction: column;
   gap: 15px;
   width: 100%;
-  max-width: 450px; /* Evita que los inputs sean gigantes */
-  margin: 0 auto; /* Lo mantiene perfectamente en el centro */
+  max-width: 450px; 
+  margin: 0 auto; 
 }
 
 .bento-input-group {
@@ -196,7 +196,7 @@
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* <- Magia responsive */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
   gap: 15px;
 }
 
